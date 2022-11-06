@@ -2,7 +2,10 @@
 """
 0-pascal_triangle
 """
+
+
 import math
+
 
 def pascal_triangle(n):
     complete_array = []
