@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-import math
 
 def pascal_triangle(n):
+    import math
+
     complete_array = []
 
     if n <= 0:
