@@ -4,7 +4,16 @@
 """
 
 
-import math
+def factorial(n):  
+    answer = 1    
+    if n < 0:
+        return None    
+    elif n == 0:
+        return 1    
+    else:
+        for i in range(1, n + 1):
+            answer = answer * i    
+    return answer 
 
 
 def pascal_triangle(n):
@@ -16,7 +25,7 @@ def pascal_triangle(n):
     for row in range(0, n):
         row_array = []
         for element in range(0, row + 1):
-            x = math.factorial(row)/(math.factorial(row - element) * math.factorial(element))
+            x = factorial(row)/(factorial(row - element) * factorial(element))
             row_array.append(int(x))
 
         complete_array.append(row_array)
