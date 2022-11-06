@@ -1,6 +1,6 @@
-import math
-
 def pascal_triangle(n):
+    import math
+    
     complete_array = []
     for row in range(0, n):
         row_array = []
