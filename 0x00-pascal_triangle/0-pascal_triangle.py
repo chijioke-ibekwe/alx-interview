@@ -1,7 +1,11 @@
 def pascal_triangle(n):
     import math
-    
+
     complete_array = []
+
+    if n <= 0:
+        return complete_array
+
     for row in range(0, n):
         row_array = []
         for element in range(0, row + 1):
