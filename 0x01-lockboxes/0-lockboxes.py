@@ -1,21 +1,26 @@
 #!/usr/bin/python3
+"""
+You have n number of locked boxes in front of you.
+Each box is numbered sequentially
+from 0 to n - 1 and each box may
+contain keys to the other boxes.
+"""
 
-def join(T,R):
-    res = []
-    for e in R:
-        res += T[e]
-    return res
 
 def canUnlockAll(boxes):
-    index = 0
-    total = list(set(boxes[0])| {0})
-    added = True
-    while added:
-        added = False
-        for j in join(boxes,total[index:]):
-            if j not in total:
-                total.append(j)
-                index +=1
-                added= True
-  
-    return len(total)==len(boxes)
+    """
+     a method that determines if all the boxes can be opened.
+    :param boxes:
+    :return: True or False
+    """
+    if not boxes or type(boxes) is not list:
+        return False
+
+    unlocked = [0]
+    for n in unlocked:
+        for key in boxes[n]:
+            if key not in unlocked and key < len(boxes):
+                unlocked.append(key)
+    if len(unlocked) == len(boxes):
+        return True
+    return False
