@@ -17,6 +17,9 @@ def factorial(n):
 
 
 def pascal_triangle(n):
+    """
+    This function prints a pascals triangle of n rows
+    """
     complete_array = []
 
     if n <= 0:
