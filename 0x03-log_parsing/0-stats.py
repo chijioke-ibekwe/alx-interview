@@ -12,6 +12,9 @@ if __name__ == '__main__':
     stats = {k: 0 for k in codes}
 
     def print_stats(stats: dict, file_size: int) -> None:
+        """
+        This method prints the count of each status code and the file size to the console
+        """
         print("File size: {:d}".format(filesize))
         for k, v in sorted(stats.items()):
             if v:
