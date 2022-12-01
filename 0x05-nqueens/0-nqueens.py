@@ -66,6 +66,6 @@ def solveNQueens(n):
 
 
 if __name__ == "__main__":
-    boards = solveNQueens(num)
+    boards = solveNQueens(argument)
     for board in boards:
         print(board)
