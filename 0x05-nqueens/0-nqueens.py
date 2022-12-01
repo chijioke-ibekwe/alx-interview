@@ -19,49 +19,53 @@ if float(argument) < 4:
     print("N must be at least 4")
     sys.exit(1)
 
-all_solutions = []
-starting_point = 0
-columns_used = set()
-positive_diags_used = set()
-negative_diags_used = set()
+def solveNQueens(n):
+    """Solution for n queens"""
+    col = set()  # keep track of used columns
+    pos = set()  # (r + c) keep track of used positive diagonals
+    neg = set()  # (r - c) keep track of used negative diagonals
 
-positions = []
+    res = []  # final result
 
-def find_solution():
-    global starting_point
-    global columns_used
-    global positive_diags_used
-    global negative_diags_used
-    global positions
-    global all_solutions
+    board = [[] for n in range(n)]  # create empy board
 
-    for row in range(int(argument)):
-        start = 0
-        if row == 0:
-            start = starting_point
+    def backtrack(row):
+        """function for recursion"""
+        # means we've reached the last row
+        if row == n:
+            # get copy of current solution(current board)
+            copy = board.copy()
+            res.append(copy)
+            return
 
-        for column in range(int(argument))[start:]:
-            if column not in columns_used and (row + column) not in positive_diags_used and (row - column) not in negative_diags_used:
-                positions.append([row, column])
-                columns_used.add(column)
-                positive_diags_used.add(row + column)
-                negative_diags_used.add(row - column)
-                break
-            else:
+        # for every column
+        for c in range(n):
+            # if we find that the column or diagonals are used, then skip
+            if c in col or (row + c) in pos or (row - c) in neg:
                 continue
 
-    if len(positions) == int(argument):
-        all_solutions.append(positions)
+            # register found columns and diagonals
+            col.add(c)
+            pos.add(row + c)
+            neg.add(row - c)
 
-    positions = []
-    columns_used = set()
-    positive_diags_used = set()
-    negative_diags_used = set()
-    starting_point += 1
+            board[row] = [row, c]
 
-while starting_point < int(argument):
-    find_solution()
+            # move to next row
+            backtrack(row + 1)
 
-for ans in all_solutions:
-    print(ans)
-    
+            # finally undo
+            col.remove(c)
+            pos.remove(row + c)
+            neg.remove(row - c)
+            board[row] = []
+
+    backtrack(0)
+
+    return res
+
+
+if __name__ == "__main__":
+    boards = solveNQueens(num)
+    for board in boards:
+        print(board)
